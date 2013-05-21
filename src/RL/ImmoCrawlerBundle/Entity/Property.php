@@ -6,66 +6,109 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Property
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="RL\ImmoCrawlerBundle\Entity\PropertyRepository")
  */
 class Property
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
     /**
-     * @var integer
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
      */
-    private $area;
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updatedAt;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="price", type="integer")
      */
     private $price;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="area", type="smallint")
+     */
+    private $area;
+
+    /**
      * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
      */
     private $type;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="rooms", type="smallint")
      */
     private $rooms;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="energy_class", type="string", length=255)
      */
     private $energyClass;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="pollution_class", type="string", length=255)
      */
-    private $ges;
+    private $pollutionClass;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255)
      */
     private $city;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="zipcode", type="string", length=255)
      */
     private $zipcode;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="street", type="string", length=255)
      */
     private $street;
 
@@ -127,26 +170,49 @@ class Property
     }
 
     /**
-     * Set area
+     * Set createdAt
      *
-     * @param integer $area
+     * @param \DateTime $createdAt
      * @return Property
      */
-    public function setArea($area)
+    public function setCreatedAt($createdAt)
     {
-        $this->area = $area;
+        $this->createdAt = $createdAt;
     
         return $this;
     }
 
     /**
-     * Get area
+     * Get createdAt
      *
-     * @return integer 
+     * @return \DateTime 
      */
-    public function getArea()
+    public function getCreatedAt()
     {
-        return $this->area;
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Property
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 
     /**
@@ -170,6 +236,29 @@ class Property
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * Set area
+     *
+     * @param integer $area
+     * @return Property
+     */
+    public function setArea($area)
+    {
+        $this->area = $area;
+    
+        return $this;
+    }
+
+    /**
+     * Get area
+     *
+     * @return integer 
+     */
+    public function getArea()
+    {
+        return $this->area;
     }
 
     /**
@@ -242,26 +331,26 @@ class Property
     }
 
     /**
-     * Set ges
+     * Set pollutionClass
      *
-     * @param string $ges
+     * @param string $pollutionClass
      * @return Property
      */
-    public function setGes($ges)
+    public function setPollutionClass($pollutionClass)
     {
-        $this->ges = $ges;
+        $this->pollutionClass = $pollutionClass;
     
         return $this;
     }
 
     /**
-     * Get ges
+     * Get pollutionClass
      *
      * @return string 
      */
-    public function getGes()
+    public function getPollutionClass()
     {
-        return $this->ges;
+        return $this->pollutionClass;
     }
 
     /**
