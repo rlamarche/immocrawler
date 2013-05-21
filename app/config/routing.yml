@@ -1,0 +1,4 @@
+rl_immo_crawler:
+    resource: "@RLImmoCrawlerBundle/Resources/config/routing.yml"
+    prefix:   /
+

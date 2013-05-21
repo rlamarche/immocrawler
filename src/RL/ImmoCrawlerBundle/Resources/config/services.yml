@@ -1,0 +1,7 @@
+parameters:
+#    rl_immo_crawler.example.class: RL\ImmoCrawlerBundle\Example
+
+services:
+#    rl_immo_crawler.example:
+#        class: %rl_immo_crawler.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
