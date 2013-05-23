@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="RL\ImmoCrawlerBundle\Entity\PropertyRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Property
 {
@@ -50,6 +51,27 @@ class Property
     private $updatedAt;
 
     /**
+     * @var string
+     * 
+     * @ORM\Column(name="provider_type", type="string", length=255)
+     */
+    private $providerType;
+    
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="provider_id", type="string", length=255)
+     */
+    private $providerId;
+    
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="provider_url", type="string", length=255)
+     */
+    private $providerUrl;
+    
+    /**
      * @var integer
      *
      * @ORM\Column(name="price", type="integer")
@@ -80,14 +102,14 @@ class Property
     /**
      * @var string
      *
-     * @ORM\Column(name="energy_class", type="string", length=255)
+     * @ORM\Column(name="energy_class", type="string", length=255, nullable=true)
      */
     private $energyClass;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pollution_class", type="string", length=255)
+     * @ORM\Column(name="pollution_class", type="string", length=255, nullable=true)
      */
     private $pollutionClass;
 
@@ -108,7 +130,7 @@ class Property
     /**
      * @var string
      *
-     * @ORM\Column(name="street", type="string", length=255)
+     * @ORM\Column(name="street", type="string", length=255, nullable=true)
      */
     private $street;
 
@@ -420,5 +442,91 @@ class Property
     public function getStreet()
     {
         return $this->street;
+    }
+
+    /**
+     * Set providerType
+     *
+     * @param string $providerType
+     * @return Property
+     */
+    public function setProviderType($providerType)
+    {
+        $this->providerType = $providerType;
+
+        return $this;
+    }
+
+    /**
+     * Get providerType
+     *
+     * @return string 
+     */
+    public function getProviderType()
+    {
+        return $this->providerType;
+    }
+
+    /**
+     * Set providerId
+     *
+     * @param string $providerId
+     * @return Property
+     */
+    public function setProviderId($providerId)
+    {
+        $this->providerId = $providerId;
+
+        return $this;
+    }
+
+    /**
+     * Get providerId
+     *
+     * @return string 
+     */
+    public function getProviderId()
+    {
+        return $this->providerId;
+    }
+
+    /**
+     * Set providerUrl
+     *
+     * @param string $providerUrl
+     * @return Property
+     */
+    public function setProviderUrl($providerUrl)
+    {
+        $this->providerUrl = $providerUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get providerUrl
+     *
+     * @return string 
+     */
+    public function getProviderUrl()
+    {
+        return $this->providerUrl;
+    }
+    
+    
+    /**
+     * Now we tell doctrine that before we persist or update we call the updatedTimestamps() function.
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updateTimestamps()
+    {
+        $this->setUpdatedAt(new \DateTime());
+
+        if($this->getCreatedAt() == null)
+        {
+            $this->setCreatedAt(new \DateTime());
+        }
     }
 }

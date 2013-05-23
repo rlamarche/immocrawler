@@ -1,3 +1,3 @@
 rl_immo_crawler_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: RLImmoCrawlerBundle:Default:index }

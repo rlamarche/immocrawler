@@ -1,1 +1,10 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %}
+
+{% block title %}Entries{% endblock %}
+
+{% block body %}
+    {% for entry in entries %}
+        <h2>{{ entry.title }}</h2>
+        <p>{{ entry.description }}</p>
+    {% endfor %}
+{% endblock %}
